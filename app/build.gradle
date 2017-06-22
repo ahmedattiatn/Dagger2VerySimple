@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "ahmedattia.simple"
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    //Dagger
+   // compile 'com.google.dagger:dagger-compiler:2.11'
+   // compile 'com.google.dagger:dagger:2.11' // if you use this Version you will have problem
+   // in Syn the app
+  //  provided 'javax.annotation:jsr250-api:1.0'
+    apt 'com.google.dagger:dagger-compiler:2.2'//dagger-compiler for code generation
+    compile 'com.google.dagger:dagger:2.2' //dagger library
+    provided 'javax.annotation:jsr250-api:1.0'
+    // Retrofit 2
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+    //Gson
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+
+    //OkHttp
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    compile 'com.squareup.okio:okio:1.13.0'
+    //test
+    testCompile 'junit:junit:4.12'
+}
